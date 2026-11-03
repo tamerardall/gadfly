@@ -75,7 +75,7 @@ Evidence: research - <bare URL>   (or: persona (simulated))
 Fix: <one imperative sentence>
 ```
 
-- `{{skipped_personas}}`: as above.
+- `{{skipped_personas}}`: as above. When no persona was skipped, delete the whole `## Skipped personas` heading line and its section from the output. Print nothing in its place: no "None", "Yok", "N/A" or "all five completed" line, in any language.
 
 Print the filled report in the chat. Do not write any file unless the user asks.
 

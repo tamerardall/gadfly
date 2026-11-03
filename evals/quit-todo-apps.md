@@ -8,6 +8,6 @@ The change was immediate. Mornings stopped starting with a wall of red overdue b
 
 I now get through roughly twice as much real work as before. Quitting to-do apps doubled my productivity, and I honestly believe it can do the same for you.
 
-What I realised is that a list is a way of postponing decisions. Every item you add is a small promise that future you will deal with it, and future you is already tired. Without the list, the only tasks that survive are the ones that actually matter, because you remember them.
+What I realised is that a list is a way of postponing decisions. Every item you add is a small promise that future you will deal with it, and future you is already tired. Without the list, the only work that survives is the work that actually matters.
 
-If you feel buried by your task manager, try deleting it today. Do not wait for the perfect moment or a quiet week. Close the app, make a coffee, and see what is still on your mind when you sit back down. That is your real to-do list.
+If you feel buried by your task manager, try deleting it today. Do not wait for the perfect moment or a quiet week. Close the app, make a coffee, and see how your week feels afterwards. You may be surprised by how much lighter it is.

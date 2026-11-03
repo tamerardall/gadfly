@@ -2,7 +2,7 @@
   <img src="assets/hero.svg" alt="Gadfly: sting your idea before the internet does" width="100%">
 </p>
 
-> **Status: v1 implemented, with known gaps.** The skill runs end to end and most behavior checks pass, but one check failed (the "unspecified replacement system" objection did not reliably appear) and two minor defects were seen (an empty "Skipped personas" section, and a report written in the wrong language in one run). See `evals/RESULTS.md`.
+> **Status: v1 implemented, with one known gap.** The skill runs end to end and most behavior checks pass. The "unspecified replacement system" objection did not appear as its own objection in 2 of 2 re-runs on the revised fixture (it surfaced only inside Fix lines). A Turkish report for an English draft was seen in some runs; it is unreproduced as a skill defect and probably comes from a global Turkish-reply instruction in the test environment. See `evals/RESULTS.md`.
 
 ## Quick start
 
