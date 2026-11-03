@@ -2,7 +2,21 @@
   <img src="assets/hero.svg" alt="Gadfly: sting your idea before the internet does" width="100%">
 </p>
 
-> **Status: design phase.** The design spec is written and approved; the skill itself is not built yet. This README describes what Gadfly will do. Nothing below is installable today.
+> **Status: v1 implemented, with known gaps.** The skill runs end to end and most behavior checks pass, but one check failed (the "unspecified replacement system" objection did not reliably appear) and two minor defects were seen (an empty "Skipped personas" section, and a report written in the wrong language in one run). See `evals/RESULTS.md`.
+
+## Quick start
+
+Install by symlinking the repo into your Claude Code skills folder:
+
+```bash
+ln -s /home/tamr/Projeler/gadfly ~/.claude/skills/gadfly
+```
+
+Then, in Claude Code:
+
+```
+Use the gadfly skill on evals/quit-todo-apps.md
+```
 
 ## The name
 
