@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-labelledby="t">
+<title id="t">Gadfly</title>
+<style></style>
+<g>
+  <path class="" d="M56 58 C40 56 14 44 12 26 C30 20 52 34 56 58Z" fill="#d4a84a" fill-opacity="0.3" stroke="#d4a84a" stroke-width="2.5" stroke-linejoin="round"/>
+  <path class="" d="M64 58 C80 56 106 44 108 26 C90 20 68 34 64 58Z" fill="#d4a84a" fill-opacity="0.3" stroke="#d4a84a" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M52 88 L68 88 L60 110Z" fill="#d4a84a" stroke="#d4a84a" stroke-width="2" stroke-linejoin="round"/>
+  <ellipse cx="60" cy="68" rx="11" ry="22" fill="#d4a84a"/>
+  <circle cx="60" cy="41" r="10" fill="#d4a84a"/>
+  <circle cx="55.5" cy="39.5" r="3" fill="#171b1d"/>
+  <circle cx="64.5" cy="39.5" r="3" fill="#171b1d"/>
+  <path d="M50 63 Q60 67 70 63 M49.5 72 Q60 76 70.5 72 M51 81 Q60 85 69 81" fill="none" stroke="#171b1d" stroke-width="2" stroke-linecap="round" stroke-opacity=".75"/>
+</g>
+</svg>
