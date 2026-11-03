@@ -6,7 +6,14 @@
 
 ## Quick start
 
-Install by symlinking the repo into your Claude Code skills folder:
+As a Claude Code plugin:
+
+```
+/plugin marketplace add tamerardall/gadfly
+/plugin install gadfly@gadfly
+```
+
+Or by symlinking the repo into your Claude Code skills folder:
 
 ```bash
 # run from the clone root
