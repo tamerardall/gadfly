@@ -103,3 +103,5 @@ Colors, typography, voice and logo rules live in [`docs/brand-guidelines.md`](do
     <img src="assets/logo-horizontal.svg" alt="Gadfly logo" width="220">
   </picture>
 </p>
+
+Built with Claude Code: the skill, its tests, evals and visuals were written by AI agents under my direction.
