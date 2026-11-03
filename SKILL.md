@@ -35,6 +35,7 @@ A mid-tier model is enough for every subagent (for example Sonnet or equivalent)
 Be tolerant. Output may be wrapped in a code fence; strip the fence. An objection `title` may or may not carry quote marks; ignore them.
 
 - Research output is one of: a list of entries (`theme`, `quote`, `source`), the line `NO MATCHES`, or `RESEARCH FAILED: <reason>`. A mixed outcome (some searches failed, some returned results) arrives as just the list; treat it as research ok.
+- If the research subagent crashes, times out, or returns anything that is none of those three forms, do not stop the run. Treat it as `RESEARCH FAILED: <reason>` with the reason describing what went wrong (e.g. `research subagent timed out`), use the second banner, and pass that same `RESEARCH FAILED: <reason>` line to the personas as the research output.
 - A persona returns up to 4 objection blocks (`title`, `why`, `severity` HIGH|MED|LOW, `evidence` research|persona, optional `source`, `fix`) or the single line `NONE`.
 
 ## Merge rules
@@ -43,7 +44,8 @@ Be tolerant. Output may be wrapped in a code fence; strip the fence. An objectio
 - Evidence is `research` only if the objection traces to a source URL that appears in the research output. Otherwise force it to `persona`, whatever the persona claimed. The evidence link is a bare URL.
 - Sort HIGH, then MED, then LOW. Inside a severity, research-backed objections come before persona-only ones.
 - Cap at 10 objections. If more remain, drop the lowest and add a line after the list: `N more lower-severity objections omitted.`
-- Zero objections after merging: say so plainly in `{{objections}}` (for example "No objections were raised by any persona."). Never invent objections.
+- Zero objections after merging, with at least one persona completed (including `NONE`): say so plainly in `{{objections}}` (for example "No objections were raised by any persona."). Never invent objections.
+- Every persona skipped (none completed): no review happened. Put "No review happened: no persona completed, so this report contains no objections and does not mean the draft is free of them." in `{{objections}}`, set `{{counts}}` to `0 objections (no persona completed)`, and keep the skipped personas list. Never claim there are no objections.
 
 ## Skipped personas
 
