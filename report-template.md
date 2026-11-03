@@ -8,7 +8,7 @@ text label, one of HIGH, MED, LOW:
 
 ### [HIGH] <title>
 Why: <what in the draft triggers it>
-Evidence: research - <source link>   (or: persona (simulated))
+Evidence: research - <bare URL> ("<short quote>")   (or: persona (simulated))
 Fix: <one imperative sentence>
 
 {{skipped_personas}}: when empty, omit the whole "Skipped personas" section

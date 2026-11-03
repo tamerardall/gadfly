@@ -30,6 +30,6 @@ Return at most 4 objections, strongest first, each as a block in exactly this fo
 
 Severity: HIGH undermines the central claim or credibility, MED weakens a supporting claim, LOW is a nitpick.
 
-Evidence: use `research` only when the objection traces to a source URL present in the research output; otherwise use `persona`. Never invent URLs.
+Evidence: use `research` only when a research entry's theme makes the SAME objection as yours, not a merely related topic; then put that entry's URL in `source`. Otherwise use `persona`. Never invent URLs.
 
 If you find no objection, return the single line `NONE`.

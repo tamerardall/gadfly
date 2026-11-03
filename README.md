@@ -9,7 +9,8 @@
 Install by symlinking the repo into your Claude Code skills folder:
 
 ```bash
-ln -s /home/tamr/Projeler/gadfly ~/.claude/skills/gadfly
+# run from the clone root
+ln -s "$(pwd)" ~/.claude/skills/gadfly
 ```
 
 Then, in Claude Code:
@@ -71,14 +72,16 @@ If web access fails, the report says so and continues as simulation-only.
 
 Out of scope for now: auto-rewriting your draft, a web UI, a stored library of past critiques.
 
-## Project layout (planned)
+## Project layout
 
 ```
 gadfly/
   SKILL.md                 orchestration
+  research-agent.md        research subagent prompt
   personas/content/*.md    v1 personas
-  personas/technical/*.md  v2 personas
   report-template.md
+  evals/                   fixtures and RESULTS.md
+  tools/                   validate_skill.py and tests
   assets/                  logo and README visuals
   docs/                    spec and brand guidelines
 ```
