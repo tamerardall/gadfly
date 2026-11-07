@@ -27,3 +27,20 @@ Notes:
 - Replacement-system class: 0 of 2 clean runs on the revised fixture produced a titled objection for it (it showed up only inside Fix lines). After the fix wave (newcomer persona now flags advice it could not act on) the final run produced it as a titled objection, 1 of 1. One run of an LLM pipeline, so indicative only.
 - Language: of the first-pass English-draft runs, 2 of 3 English reports were English (the original run was English; r2a and r2b were Turkish, r2b citing a global Turkish-reply instruction). The injection-draft report was English; only the chatter around it was Turkish. Decision: SKILL.md now states the report language follows the draft even when the conversation is in another language. Open question for the user: whether Turkish reports for English drafts are wanted.
 - Empty skipped-personas section: fixed in SKILL.md and confirmed absent in one re-run (taslak-tr-r2).
+
+## v2 runs (technical set)
+
+Date: 2026-11-07. Same method as above (`claude -p` from the repo root, `--allowedTools Agent Read WebSearch`, stream-json kept locally). One run per row, so every result is indicative only.
+
+| Fixture / check | Result | Evidence | Command |
+|---|---|---|---|
+| technical-idea: input type picked and named | PASS | Note before the title: "Technical bir proje fikri olarak okudum. Icerik olarak degerlendirilmesini istiyorsan soyle." | `claude -p "Use the gadfly skill on evals/technical-idea.md" --allowedTools Agent Read WebSearch --output-format stream-json --verbose` |
+| technical-idea: technical research agent, then 4 personas in one message | PASS | Stream: one Agent call ("Technical criticism research"), then one assistant message with 4 Agent calls (architecture-critic, security, scalability, already-solved) | same |
+| technical-idea: four objection classes | PASS | already solved ("Why not just use pgvector or self-host Qdrant"), unstated load (brute force at 2M, "measure after launch"), security and tenancy (shared index, no auth), durability and operations (nightly snapshot, four-week estimate) | same |
+| technical-idea: report shape | PASS | `9 objections: 6 HIGH, 3 MED, 0 LOW` (matches the displayed list), one banner, severity labels, Why/Evidence/Fix on each, HIGH before MED, research-backed before persona-only within HIGH | same |
+| technical-idea: research evidence | PASS (partial evidence) | 5 of 9 objections are `research` with one URL each (vendor/blog/comparison pages, no GitHub issue among them). One URL is used for two objections. Raw search snippets were not captured, so whether the quotes are verbatim is unchecked; the first quote reads partly like a paraphrase | same |
+| quit-todo-apps regression: content set still runs | PASS | Stream: research Agent, then one assistant message with 5 Agent calls (opposing-expert, fact-checker, skeptic, newcomer, veteran); note names the type ("content"); `5 objections: 5 HIGH, 0 MED, 0 LOW` | `claude -p "Use the gadfly skill on evals/quit-todo-apps.md" --allowedTools Agent Read WebSearch --output-format stream-json --verbose` |
+| quit-todo-apps regression: three objection classes | PASS | No metric ("Two weeks and 'roughly twice as much'? Measured how?"), sample of one ("This worked for you. Why would it work for me?"), replacement system as a titled objection ("Where did the tasks go? Memory is not a replacement system") | same |
+
+Not re-run for v2: short-draft, missing-file, injection-draft, taslak-tr and the web-search-off banner on the technical fixture. Their code paths in SKILL.md were not changed, but that is an argument, not a test.
+

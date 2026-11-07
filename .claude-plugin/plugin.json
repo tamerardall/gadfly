@@ -1,12 +1,21 @@
 {
   "name": "gadfly",
-  "description": "Red-team a draft before you publish it: a research agent plus five parallel reviewer personas return a ranked list of likely objections, each with a fix",
-  "version": "0.1.0",
+  "description": "Red-team a draft or a technical project idea before you publish or build it: a research agent plus parallel reviewer personas return a ranked list of likely objections, each with a fix",
+  "version": "0.2.0",
   "author": {
     "name": "Tamer Ardal"
   },
   "license": "MIT",
-  "keywords": ["writing", "red-team", "review", "blog", "linkedin", "objections"],
+  "keywords": [
+    "writing",
+    "red-team",
+    "review",
+    "blog",
+    "linkedin",
+    "objections",
+    "architecture",
+    "security"
+  ],
   "skills": [
     "./"
   ]

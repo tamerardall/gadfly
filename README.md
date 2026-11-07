@@ -2,7 +2,7 @@
   <img src="assets/hero.svg" alt="Gadfly: sting your idea before the internet does" width="100%">
 </p>
 
-> **Status: v1 implemented, with one known gap.** The skill runs end to end and most behavior checks pass. The "unspecified replacement system" objection did not appear as its own objection in 2 of 2 re-runs on the revised fixture (it surfaced only inside Fix lines). A Turkish report for an English draft was seen in some runs; it is unreproduced as a skill defect and probably comes from a global Turkish-reply instruction in the test environment. See `evals/RESULTS.md`.
+> **Status: v2 implemented (0.2.0), one run per check.** The skill reviews blog and LinkedIn drafts (content set) and technical project ideas (technical set), and picks the set from the input. On the technical fixture all four expected objection classes appeared; the content regression still passes. Each check ran once, the web-off banner was not re-tested on technical input, and research quotes are not verified as verbatim. v1 known gaps still apply: the "unspecified replacement system" objection was unstable across re-runs, and a Turkish report for an English draft was seen in some runs, probably from a global Turkish-reply instruction in the test environment. See `evals/RESULTS.md`.
 
 ## Quick start
 
@@ -23,8 +23,11 @@ ln -s "$(pwd)" ~/.claude/skills/gadfly
 Then, in Claude Code:
 
 ```
-Use the gadfly skill on evals/quit-todo-apps.md
+Use the gadfly skill on evals/quit-todo-apps.md      # a blog or LinkedIn draft
+Use the gadfly skill on evals/technical-idea.md      # a project idea or design doc
 ```
+
+Gadfly picks the input type itself and says which one it used. To force it, say "this is a technical idea" or "this is content".
 
 ## The name
 
@@ -44,7 +47,11 @@ It exists because most criticism is predictable. Write "quitting to-do apps doub
 4. **Merge.** Duplicates are removed. Every objection gets a severity, an evidence tag and an action.
 5. **Report.** Ranked by severity, with real-world evidence kept apart from simulation.
 
-### Starter personas
+### Personas
+
+Gadfly runs one of two persona sets, chosen by input type.
+
+**Content** (blog posts, LinkedIn posts, articles), research on Hacker News, Reddit and forums:
 
 | Persona | Hunts for |
 |---|---|
@@ -53,6 +60,15 @@ It exists because most criticism is predictable. Write "quitting to-do apps doub
 | Skeptic | Cherry-picking, hype, missing counter-evidence |
 | Newcomer | Undefined jargon, assumed knowledge |
 | Seen-it-all veteran | "This is already known", prior art |
+
+**Technical** (project ideas, design docs, READMEs), research also covers GitHub issues and competing projects:
+
+| Persona | Hunts for |
+|---|---|
+| Architecture critic | Needless complexity, wrong boundaries, brittle dependencies |
+| Security | Missing threat model, auth gaps, data exposure, supply chain, prompt injection |
+| Scalability | Unstated load, bottlenecks, cost growth, operational burden |
+| Already solved | Existing tools that cover the core, unexplained build-vs-buy |
 
 ## What you get
 
@@ -75,7 +91,7 @@ If web access fails, the report says so and continues as simulation-only.
 | Version | Scope |
 |---|---|
 | **v1** | Pre-publish content: blog posts, LinkedIn posts |
-| **v2** | Technical projects and ideas: architecture critic, security, scalability and "this is already solved by X" personas; GitHub issues and competing projects as research sources; personas picked automatically from the input type |
+| **v2** (done, 0.2.0) | Technical projects and ideas: architecture critic, security, scalability and "this is already solved by X" personas; GitHub issues and competing projects as research sources; personas picked automatically from the input type |
 
 Out of scope for now: auto-rewriting your draft, a web UI, a stored library of past critiques.
 
@@ -84,8 +100,10 @@ Out of scope for now: auto-rewriting your draft, a web UI, a stored library of p
 ```
 gadfly/
   SKILL.md                 orchestration
-  research-agent.md        research subagent prompt
-  personas/content/*.md    v1 personas
+  research-agent.md        research subagent prompt (content)
+  research-agent-technical.md  research subagent prompt (technical)
+  personas/content/*.md    content personas (v1)
+  personas/technical/*.md  technical personas (v2)
   report-template.md
   evals/                   fixtures and RESULTS.md
   tools/                   validate_skill.py and tests
