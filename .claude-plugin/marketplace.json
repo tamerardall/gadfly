@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Sting your idea before the internet does",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "gadfly",
       "source": "./",
       "description": "Finds the objections readers are likely to raise against a draft, before you publish it. Research agent plus five parallel personas, one ranked report with a fix per objection",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Tamer Ardal"
       },

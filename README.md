@@ -106,9 +106,11 @@ gadfly/
   personas/technical/*.md  technical personas (v2)
   report-template.md
   evals/                   fixtures and RESULTS.md
-  tools/                   validate_skill.py and tests
+  tools/                   validate_skill.py and tests, gen_assets.py (visuals)
   assets/                  logo and README visuals
   docs/                    spec and brand guidelines
+  .claude-plugin/          plugin and marketplace manifests
+  LICENSE                  MIT
 ```
 
 ## Brand
