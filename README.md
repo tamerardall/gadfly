@@ -2,7 +2,7 @@
   <img src="assets/hero.svg" alt="Gadfly: sting your idea before the internet does" width="100%">
 </p>
 
-> **Status: v2 implemented (0.2.0), one run per check.** The skill reviews blog and LinkedIn drafts (content set) and technical project ideas (technical set), and picks the set from the input. On the technical fixture all four expected objection classes appeared; the content regression still passes. Each check ran once, the web-off banner was not re-tested on technical input, and research quotes are not verified as verbatim. v1 known gaps still apply: the "unspecified replacement system" objection was unstable across re-runs, and a Turkish report for an English draft was seen in some runs, probably from a global Turkish-reply instruction in the test environment. See `evals/RESULTS.md`.
+> **Status: v2 implemented (0.2.0), one run per check.** The skill reviews blog and LinkedIn drafts (content set) and technical project ideas (technical set), and picks the set from the input. On the technical fixture all four expected objection classes appeared, the web-off banner works, and the v1 checks (content regression, short draft, missing file, injection, Turkish draft) still pass. Each check ran once, and research quotes are not verified as verbatim. Known gaps: the "unspecified replacement system" objection was unstable across v1 re-runs; in a Turkish report the headings and labels (`Objections`, `Why`, `Evidence`, `Fix`) stay English; a Turkish report for an English draft was seen in some runs, probably from a global Turkish-reply instruction in the test environment. See `evals/RESULTS.md`.
 
 ## Quick start
 
