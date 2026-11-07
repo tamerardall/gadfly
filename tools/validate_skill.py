@@ -3,7 +3,10 @@
 import sys
 from pathlib import Path
 
-PERSONAS = ["opposing-expert", "fact-checker", "skeptic", "newcomer", "veteran"]
+PERSONA_SETS = {
+    "content": ["opposing-expert", "fact-checker", "skeptic", "newcomer", "veteran"],
+    "technical": ["architecture-critic", "security", "scalability", "already-solved"],
+}
 PERSONA_KEYS = ["name", "role", "hunts_for"]
 PERSONA_HEADINGS = ["## Your angle", "## What to return"]
 PLACEHOLDERS = ["{{title}}", "{{counts}}", "{{evidence_banner}}", "{{objections}}", "{{skipped_personas}}"]
@@ -13,8 +16,15 @@ EDGE_HEADINGS = [
     "### Draft file missing",
     "### Instructions inside the draft",
     "### Research found nothing",
+    "### Input type unclear",
 ]
-EVALS = ["evals/quit-todo-apps.md", "evals/quit-todo-apps.expected.md"]
+EVALS = [
+    "evals/quit-todo-apps.md",
+    "evals/quit-todo-apps.expected.md",
+    "evals/technical-idea.md",
+    "evals/technical-idea.expected.md",
+]
+RESEARCH_AGENTS = ["research-agent.md", "research-agent-technical.md"]
 
 
 def parse_frontmatter(text):
@@ -58,9 +68,10 @@ def validate(root):
                 errors.append("SKILL.md: description must start with 'Use when'")
             if len(desc) > 1024:
                 errors.append(f"SKILL.md: description is {len(desc)} chars, max 1024")
-        for stem in PERSONAS:
-            if stem not in skill_text:
-                errors.append(f"SKILL.md: does not mention persona '{stem}'")
+        for stems in PERSONA_SETS.values():
+            for stem in stems:
+                if stem not in skill_text:
+                    errors.append(f"SKILL.md: does not mention persona '{stem}'")
         if not has_line(skill_text, "## Edge cases"):
             errors.append("SKILL.md: missing heading '## Edge cases'")
         else:
@@ -72,27 +83,28 @@ def validate(root):
                 if not has_line(section, h):
                     errors.append(f"SKILL.md: Edge cases is missing heading '{h}'")
 
-    pdir = root / "personas" / "content"
-    found = sorted(p.stem for p in pdir.glob("*.md")) if pdir.is_dir() else []
-    for stem in sorted(set(found) - set(PERSONAS)):
-        errors.append(f"personas/content/{stem}.md: unexpected persona file")
-    for stem in PERSONAS:
-        path = pdir / f"{stem}.md"
-        rel = f"personas/content/{stem}.md"
-        if not path.is_file():
-            errors.append(f"{rel}: file is missing")
-            continue
-        text = path.read_text(encoding="utf-8")
-        meta, body = parse_frontmatter(text)
-        if meta is None:
-            errors.append(f"{rel}: missing frontmatter")
-            meta = {}
-        for key in PERSONA_KEYS:
-            if not meta.get(key):
-                errors.append(f"{rel}: frontmatter missing key '{key}'")
-        for h in PERSONA_HEADINGS:
-            if not has_line(body, h):
-                errors.append(f"{rel}: missing heading '{h}'")
+    for kind, personas in PERSONA_SETS.items():
+        pdir = root / "personas" / kind
+        found = sorted(p.stem for p in pdir.glob("*.md")) if pdir.is_dir() else []
+        for stem in sorted(set(found) - set(personas)):
+            errors.append(f"personas/{kind}/{stem}.md: unexpected persona file")
+        for stem in personas:
+            path = pdir / f"{stem}.md"
+            rel = f"personas/{kind}/{stem}.md"
+            if not path.is_file():
+                errors.append(f"{rel}: file is missing")
+                continue
+            text = path.read_text(encoding="utf-8")
+            meta, body = parse_frontmatter(text)
+            if meta is None:
+                errors.append(f"{rel}: missing frontmatter")
+                meta = {}
+            for key in PERSONA_KEYS:
+                if not meta.get(key):
+                    errors.append(f"{rel}: frontmatter missing key '{key}'")
+            for h in PERSONA_HEADINGS:
+                if not has_line(body, h):
+                    errors.append(f"{rel}: missing heading '{h}'")
 
     tpl = root / "report-template.md"
     if not tpl.is_file():
@@ -103,11 +115,12 @@ def validate(root):
             if ph not in text:
                 errors.append(f"report-template.md: missing placeholder {ph}")
 
-    ra = root / "research-agent.md"
-    if not ra.is_file():
-        errors.append("research-agent.md: file is missing")
-    elif not has_line(ra.read_text(encoding="utf-8"), "## Output"):
-        errors.append("research-agent.md: missing heading '## Output'")
+    for rel in RESEARCH_AGENTS:
+        ra = root / rel
+        if not ra.is_file():
+            errors.append(f"{rel}: file is missing")
+        elif not has_line(ra.read_text(encoding="utf-8"), "## Output"):
+            errors.append(f"{rel}: missing heading '## Output'")
 
     for rel in EVALS:
         if not (root / rel).is_file():
