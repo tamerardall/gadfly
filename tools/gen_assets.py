@@ -214,7 +214,7 @@ social = f"""
 <g transform="translate(110 150) scale(3.2)">{fly()}</g>
 <text x="540" y="330" font-family="{DISPLAY}" font-size="210" font-weight="900" fill="{TEXT}" letter-spacing="4">GADFLY</text>
 <text x="546" y="398" font-family="{SERIF}" font-size="34" fill="{BRASS}">Sting your idea before the internet does.</text>
-<text x="546" y="456" font-family="{SERIF}" font-size="22" fill="{STEEL}">Pre-publish red-team for posts, and soon for technical ideas.</text>
+<text x="546" y="456" font-family="{SERIF}" font-size="22" fill="{STEEL}">Pre-publish red-team for posts and technical ideas.</text>
 """
 write("social-preview.svg", svg(1280, 640, social, "Gadfly", fonts=("display", "serif")))
 print("ok")
