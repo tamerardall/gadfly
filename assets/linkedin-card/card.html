@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gadfly LinkedIn card</title>
+<style>
+  :root{
+    --iron:#171B1D; --mat:#1F2426; --rule:#33393B; --text:#E3E4DE; --steel:#9AA5A8;
+    --brass:#D4A84A; --brass-b:#E3BD62; --mist:#7DB6AE; --red:#E8756B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:627px;overflow:hidden;background:var(--iron);
+    font-family:"Big Shoulders Display","Noto Sans","Liberation Sans",sans-serif;color:var(--text)}
+  #stage{position:relative;width:1200px;height:627px;
+    background:
+      radial-gradient(520px 420px at 18% 30%, rgba(212,168,74,.14), transparent 70%),
+      radial-gradient(600px 500px at 90% 100%, rgba(36,87,90,.35), transparent 70%),
+      var(--iron);}
+  #grid{position:absolute;inset:0;opacity:.35;
+    background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+    background-size:40px 40px;
+    -webkit-mask-image:radial-gradient(ellipse at 40% 50%,#000 10%,transparent 75%);
+            mask-image:radial-gradient(ellipse at 40% 50%,#000 10%,transparent 75%);}
+  .abs{position:absolute}
+  #brand{left:56px;top:48px;display:flex;align-items:center;gap:14px}
+  #brand img{width:54px;height:54px}
+  #brand span{font-size:30px;font-weight:800;letter-spacing:.18em;color:var(--brass)}
+  #headline{left:56px;top:150px;width:350px;font-size:50px;line-height:1.04;font-weight:800;letter-spacing:-.01em}
+  #headline em{font-style:normal;color:var(--brass-b)}
+  #sub{left:56px;top:372px;width:330px;font-size:18px;line-height:1.45;color:var(--steel);
+    font-family:"Noto Sans","Liberation Sans",sans-serif}
+  #url{left:56px;bottom:40px;font-size:16px;color:var(--mist);letter-spacing:.04em;
+    font-family:"Noto Sans Mono","Liberation Mono",monospace}
+
+  /* draft card */
+  #draft{left:420px;top:96px;width:330px;height:430px;background:var(--mat);border:1px solid var(--rule);
+    border-radius:14px;padding:22px 22px 0;font-family:"Noto Sans","Liberation Sans",sans-serif}
+  #draft .who{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  #draft .av{width:34px;height:34px;border-radius:50%;background:var(--rule)}
+  #draft .nm{font-size:13px;font-weight:700}
+  #draft .sb{font-size:11px;color:var(--steel)}
+  #draft h3{font-size:22px;line-height:1.22;font-weight:800;margin-bottom:14px}
+  #draft h3 mark{background:none;color:var(--text);position:relative}
+  #draft p{font-size:13.5px;line-height:1.55;color:var(--steel);margin-bottom:10px}
+  .hl{position:relative;display:inline-block;color:var(--text)}
+  .hl::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:3px;border-radius:2px;
+    background:var(--c);transform:scaleX(var(--s,0));transform-origin:left}
+  #tag{position:absolute;left:0;right:0;bottom:0;height:70px;border-top:1px solid var(--rule);
+    border-radius:0 0 14px 14px;background:rgba(15,38,40,.85);display:flex;align-items:center;
+    justify-content:space-between;padding:0 22px;font-family:"Noto Sans","Liberation Sans",sans-serif}
+  #tag b{font-size:30px;color:var(--brass-b);font-weight:800}
+  #tag span{font-size:12.5px;color:var(--steel);text-align:right;line-height:1.4}
+  #tag .pills{display:flex;gap:6px;margin-top:4px;justify-content:flex-end}
+
+  /* agent chips */
+  .chip{left:806px;width:340px;height:84px;background:var(--mat);border:1px solid var(--rule);
+    border-radius:12px;padding:10px 14px 10px 70px;font-family:"Noto Sans","Liberation Sans",sans-serif}
+  .chip .nm{font-size:15px;font-weight:700;letter-spacing:.01em}
+  .chip .hu{font-size:11.5px;color:var(--steel);margin-top:1px}
+  .chip .ob{font-size:13px;margin-top:6px;color:var(--text);white-space:nowrap}
+  .chip svg.spark{position:absolute;left:12px;top:15px;width:48px;height:48px;overflow:visible}
+  .pill{position:absolute;right:12px;top:10px;font-size:10.5px;font-weight:800;letter-spacing:.08em;
+    padding:2px 8px;border-radius:999px;border:1.5px solid var(--c);color:var(--c)}
+  .pill.fill{background:var(--c);color:#171B1D}
+  #links{left:0;top:0;width:1200px;height:627px;pointer-events:none}
+  .link{fill:none;stroke-width:2;stroke-linecap:round;stroke-dasharray:6 7}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="grid"></div>
+
+  <div id="brand" class="abs"><img src="../logo-icon.svg" alt=""><span>GADFLY</span></div>
+  <div id="headline" class="abs">Sting your idea <em>before the internet does.</em></div>
+  <div id="sub" class="abs">1 research agent and 5 personas read your draft in parallel. Every objection ranked, with a fix.</div>
+  <div id="url" class="abs">github.com/tamerardall/gadfly</div>
+
+  <div id="draft" class="abs">
+    <div class="who"><div class="av"></div><div><div class="nm">Your draft</div><div class="sb">Not published yet</div></div></div>
+    <h3>I quit to-do apps and <span class="hl" id="h1" style="--c:#E8756B">doubled</span> my <span class="hl" id="h2" style="--c:#E3BD62">productivity</span></h3>
+    <p>Two weeks ago I deleted every app from my phone and laptop. <span class="hl" id="h3" style="--c:#7DB6AE">Inbox zero</span> felt like magic.</p>
+    <p>Todoist and Things always <span class="hl" id="h4" style="--c:#B7A6E8">slowed me down</span>. Paper notebooks never did, and <span class="hl" id="h5" style="--c:#9AD48F">nobody</span> had tried this before.</p>
+    <div id="tag"><b id="count">0</b><span>objections found<div class="pills" id="pills"></div></span></div>
+  </div>
+
+  <svg id="links" class="abs" viewBox="0 0 1200 627"></svg>
+  <div id="chips"></div>
+</div>
+
+<script>
+const AGENTS = [
+  {n:"Research agent",  h:"real HN / Reddit criticism", o:"“Doubled, measured how?”",        sev:"HIGH", c:"#E3BD62", hl:"h2"},
+  {n:"Opposing expert", h:"strawmen, unfair comparisons", o:"Ignores quick-capture apps",     sev:"MED",  c:"#E8756B", hl:"h1"},
+  {n:"Fact-checker",    h:"claims without sources",       o:"No source for the 2x",           sev:"HIGH", c:"#7DB6AE", hl:"h3"},
+  {n:"Skeptic",         h:"cherry-picking, hype",         o:"Two weeks. n = 1.",              sev:"MED",  c:"#B7A6E8", hl:"h4"},
+  {n:"Newcomer",        h:"undefined jargon",             o:"“Inbox zero”? Never defined.",   sev:"LOW",  c:"#9AD48F", hl:"h5"},
+  {n:"Seen-it-all veteran", h:"“this is already known”",  o:"Prior art: GTD, 2001",           sev:"LOW",  c:"#E39A5B", hl:null},
+];
+const SEV = {HIGH:"#E8756B", MED:"#E3BD62", LOW:"#7DB6AE"};
+const T = 9;               // loop length, seconds
+const START = i => 0.9 + i*0.85;
+const clamp = (x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ease = x => 1-Math.pow(1-clamp(x),3);
+const back = x => { x=clamp(x); const c=1.70158; return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2); };
+
+// Claude-style spark: 12 rounded rays of uneven length.
+const LEN = [1,.62,.92,.55,1,.7,.95,.58,.88,.66,1,.6];
+function sparkSVG(color,id){
+  let r="";
+  LEN.forEach((l,k)=>{
+    const a=k*30*Math.PI/180, r0=5, r1=5+19*l;
+    r+=`<line x1="${(24+Math.cos(a)*r0).toFixed(2)}" y1="${(24+Math.sin(a)*r0).toFixed(2)}" x2="${(24+Math.cos(a)*r1).toFixed(2)}" y2="${(24+Math.sin(a)*r1).toFixed(2)}" stroke="${color}" stroke-width="4.2" stroke-linecap="round"/>`;
+  });
+  return `<svg class="spark" id="sp${id}" viewBox="0 0 48 48"><g id="spg${id}" style="transform-origin:24px 24px">${r}</g></svg>`;
+}
+
+const chipsEl = document.getElementById("chips");
+const linksEl = document.getElementById("links");
+const CH_TOP = 21, CH_STEP = 93;
+AGENTS.forEach((a,i)=>{
+  const d=document.createElement("div");
+  d.className="chip abs"; d.id="chip"+i; d.style.top=(CH_TOP+i*CH_STEP)+"px";
+  d.style.setProperty("--c",a.c);
+  d.innerHTML=sparkSVG(a.c,i)+
+    `<div class="nm">${a.n}</div><div class="hu">${a.h}</div>`+
+    `<div class="ob" id="ob${i}">${a.o}</div>`+
+    `<div class="pill" id="pill${i}" style="--c:${SEV[a.sev]}">${a.sev}</div>`;
+  chipsEl.appendChild(d);
+  const y=CH_TOP+i*CH_STEP+42;
+  const p=document.createElementNS("http://www.w3.org/2000/svg","path");
+  p.setAttribute("class","link"); p.setAttribute("id","ln"+i); p.setAttribute("stroke",a.c);
+  p.setAttribute("d",`M806 ${y} C 780 ${y}, 790 ${150+i*50}, 752 ${150+i*50}`);
+  linksEl.appendChild(p);
+});
+
+function render(t){
+  t = ((t%T)+T)%T;
+  // global fade in / out for loop
+  const fin = ease(t/0.6), fout = 1-ease((t-8.4)/0.5);
+  const g = Math.min(fin,fout);
+  ["brand","headline","sub","url","draft"].forEach((id,k)=>{
+    const e=document.getElementById(id);
+    const f=ease((t-0.08*k)/0.6)*fout;
+    e.style.opacity=f; e.style.transform=`translateY(${(1-f)*14}px)`;
+  });
+  document.getElementById("grid").style.opacity=.35*g;
+
+  let found=0; const tally={HIGH:0,MED:0,LOW:0};
+  AGENTS.forEach((a,i)=>{
+    const s=START(i);
+    const chip=document.getElementById("chip"+i);
+    const pop=back((t-s)/0.4);
+    chip.style.opacity=clamp((t-s)/0.2)*fout;
+    chip.style.transform=`translateX(${(1-pop)*40}px) scale(${.92+.08*pop})`;
+    // spark: spins while "reading", then settles
+    const read=clamp((t-s)/0.9);
+    const rot=(t-s)*220*(1-ease((t-s-0.3)/0.9)) ;
+    const pulse=1+0.12*Math.sin((t-s)*14)*(1-read);
+    document.getElementById("spg"+i).style.transform=`rotate(${rot}deg) scale(${pulse})`;
+    // link draws
+    const ln=document.getElementById("ln"+i);
+    const draw=ease((t-s-0.35)/0.4);
+    ln.style.opacity=(draw>0?1:0)*Math.max(0,fout)*(0.9-0.5*ease((t-s-0.9)/0.6));
+    ln.style.strokeDashoffset=-(t*30)%13;
+    ln.setAttribute("stroke-dasharray", draw<1 ? `${draw*400} 400` : "6 7");
+    // objection + pill
+    const o=ease((t-s-0.6)/0.3);
+    document.getElementById("ob"+i).style.opacity=o;
+    const pl=document.getElementById("pill"+i);
+    pl.style.opacity=o; pl.classList.toggle("fill", (t-s)>0.6 && (t-s)<1.1);
+    // highlight in draft
+    if(a.hl){ document.getElementById(a.hl).style.setProperty("--s",ease((t-s-0.7)/0.3)); }
+    if(t>=s+0.7){found++; tally[a.sev]++;}
+  });
+  // reset highlights for veteran-less loops
+  if(t<0.9) ["h1","h2","h3","h4","h5"].forEach(id=>document.getElementById(id).style.setProperty("--s",0));
+
+  document.getElementById("count").textContent=found;
+  document.getElementById("pills").innerHTML=
+    ["HIGH","MED","LOW"].map(k=>`<span class="pill" style="position:static;--c:${SEV[k]}">${tally[k]} ${k}</span>`).join("");
+}
+
+const q=new URLSearchParams(location.search);
+if(q.has("t")){ render(parseFloat(q.get("t"))); }
+else { const t0=performance.now(); (function loop(){ render((performance.now()-t0)/1000); requestAnimationFrame(loop); })(); }
+</script>
+</body>
+</html>
